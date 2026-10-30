@@ -1,0 +1,10 @@
+{
+  "id": "presswork",
+  "name": "Presswork",
+  "version": "0.1.0",
+  "minAppVersion": "1.4.0",
+  "description": "Applies the Presswork print-inspired design system to Obsidian — stamp badges from frontmatter, callout-to-component conversion, dropcap rendering, and editor insert commands.",
+  "author": "Presswork",
+  "authorUrl": "https://presswork.style",
+  "isDesktopOnly": false
+}

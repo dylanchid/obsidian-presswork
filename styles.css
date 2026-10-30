@@ -1,0 +1,162 @@
+/*
+ * Presswork Plugin — styles.css
+ *
+ * Obsidian loads this file automatically when the plugin is enabled.
+ * It provides the Obsidian dark/light mode bridge for Presswork tokens
+ * and ensures plugin-injected components render correctly even when the
+ * user is not using the separate CSS snippet.
+ *
+ * This file intentionally does NOT duplicate all of presswork.min.css —
+ * those styles are loaded from CDN by the plugin (or via the snippet).
+ * This file handles only Obsidian-specific integration concerns.
+ */
+
+/* ── Token bridge: Obsidian light mode ──────────────────────────────────────── */
+
+body.theme-light,
+body:not(.theme-dark) {
+  --pw-paper-cream:     #f4efe6;
+  --pw-paper-newsprint: #e8e4db;
+  --pw-paper-kraft:     #c4a97d;
+  --pw-paper-linen:     #ece7dc;
+  --pw-paper-white:     #f9f7f3;
+  --pw-paper-dark:      #2a2520;
+
+  --pw-ink-magenta:     #c44b8b;
+  --pw-ink-goldenrod:   #d4a832;
+  --pw-ink-vermillion:  #d94530;
+  --pw-ink-cornflower:  #4a7cc9;
+  --pw-ink-salmon:      #e8a090;
+  --pw-ink-olive:       #7a7a3e;
+  --pw-ink-black:       #1a1814;
+  --pw-ink-muted:       #635b53;
+  --pw-ornament-color:  #ccc5b8;
+
+  --pw-font-display:   'Playfair Display', Georgia, 'Times New Roman', serif;
+  --pw-font-editorial: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --pw-font-mono:      'DM Mono', 'SF Mono', Consolas, monospace;
+  --pw-font-body:      'Inter', -apple-system, sans-serif;
+
+  --pw-space-1:  0.25rem;
+  --pw-space-2:  0.5rem;
+  --pw-space-3:  0.75rem;
+  --pw-space-4:  1rem;
+  --pw-space-6:  1.5rem;
+  --pw-space-8:  2rem;
+  --pw-space-12: 3rem;
+
+  --pw-shadow-sheet:   4px 4px 0 rgba(0, 0, 0, 0.15);
+  --pw-shadow-stacked: 2px 2px 0 rgba(0, 0, 0, 0.1),
+                       5px 5px 0 #e8e4db,
+                       7px 7px 0 rgba(0, 0, 0, 0.08),
+                       10px 10px 0 #ece7dc,
+                       12px 12px 0 rgba(0, 0, 0, 0.05);
+  --pw-shadow-lifted:  6px 6px 0 rgba(0, 0, 0, 0.12);
+  --pw-shadow-pressed: 1px 1px 0 rgba(0, 0, 0, 0.2);
+
+  --pw-tracking-tight:   -0.02em;
+  --pw-tracking-wide:     0.08em;
+  --pw-tracking-wider:    0.1em;
+  --pw-tracking-widest:   0.15em;
+
+  --pw-radius-sm:  2px;
+  --pw-radius-md:  4px;
+  --pw-radius-lg:  8px;
+
+  --pw-duration-quick: 200ms;
+  --pw-duration-base:  400ms;
+
+  --pw-surface-primary:   var(--pw-paper-cream);
+  --pw-text-primary:      var(--pw-ink-black);
+  --pw-text-muted:        #635b53;
+  --pw-text-faint:        #6d665d;
+  --pw-border-color:      rgba(0, 0, 0, 0.1);
+  --pw-sheet-bg:          var(--pw-paper-cream);
+  --pw-code-bg:           var(--pw-paper-newsprint);
+  --pw-grain-opacity:     0.35;
+}
+
+/* ── Token bridge: Obsidian dark mode ───────────────────────────────────────── */
+
+body.theme-dark {
+  --pw-paper-cream:     #2a2520;
+  --pw-paper-newsprint: #332e28;
+  --pw-paper-kraft:     #3d3428;
+  --pw-paper-linen:     #302b26;
+  --pw-paper-white:     #3a3530;
+  --pw-paper-dark:      #1a1714;
+  --pw-ink-black:       #e8e2d8;
+  --pw-ink-muted:       #a49c92;
+  --pw-ornament-color:  #4a4540;
+  --pw-grain-opacity:   0.15;
+
+  --pw-shadow-stacked: 2px 2px 0 rgba(0, 0, 0, 0.3),
+                       5px 5px 0 #332e28,
+                       7px 7px 0 rgba(0, 0, 0, 0.2),
+                       10px 10px 0 #302b26,
+                       12px 12px 0 rgba(0, 0, 0, 0.15);
+
+  --pw-surface-primary:   #2a2520;
+  --pw-text-primary:      #e8e2d8;
+  --pw-text-muted:        #a49c92;
+  --pw-text-faint:        #968e84;
+  --pw-border-color:      rgba(255, 255, 255, 0.08);
+  --pw-border-strong:     #8a8278;
+  --pw-sheet-bg:          #2a2520;
+  --pw-code-bg:           #332e28;
+}
+
+/* ── Presswork [data-theme] respects Obsidian's theme class too ─────────────── */
+/* Map body.theme-dark to [data-theme="dark"] for Presswork's own component CSS */
+
+body.theme-dark .pull-quote {
+  color: var(--pw-ink-black);
+  mix-blend-mode: normal;
+}
+
+body.theme-dark .ink-block {
+  mix-blend-mode: normal;
+}
+
+body.theme-dark .stamp--archived {
+  color: var(--pw-ink-black);
+}
+
+body.theme-dark .sheet {
+  background: var(--pw-sheet-bg);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4);
+}
+
+body.theme-dark .sheet--stacked {
+  box-shadow: var(--pw-shadow-stacked);
+}
+
+body.theme-dark .divider::before {
+  opacity: 0.3;
+}
+
+/* ── Plugin-injected stamp badge positioning ────────────────────────────────── */
+
+.pw-status-stamp {
+  vertical-align: middle;
+}
+
+/* ── Reading View: give Presswork components room to breathe ────────────────── */
+
+.markdown-preview-view .sheet,
+.markdown-preview-view .telegram,
+.markdown-preview-view .index-card {
+  margin: 1.5rem 0;
+}
+
+.markdown-preview-view .stamp {
+  margin: 0 0.25rem;
+}
+
+.markdown-preview-view .pull-quote {
+  margin: 2rem 0;
+}
+
+.markdown-preview-view .divider {
+  margin: 1rem 0;
+}
