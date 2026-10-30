@@ -8,4 +8,4 @@ Copy `manifest.json`, `main.js`, and `styles.css` (if present) into `<vault>/.ob
 
 ## Source
 
-This repository contains the installed JavaScript plugin. The original TypeScript source is not available in the vault.
+The TypeScript source is in `src/`. Run `npm ci` and `npm run build` to generate `main.js`.
